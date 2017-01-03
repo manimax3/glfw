@@ -184,6 +184,7 @@ GLFWAPI GLFWwindow* glfwCreateWindow(int width, int height,
     window->decorated   = wndconfig.decorated;
     window->autoIconify = wndconfig.autoIconify;
     window->floating    = wndconfig.floating;
+    window->hidpi       = wndconfig.hidpi;
     window->cursorMode  = GLFW_CURSOR_NORMAL;
 
     window->minwidth    = GLFW_DONT_CARE;
@@ -253,6 +254,7 @@ void glfwDefaultWindowHints(void)
     _glfw.hints.window.decorated   = GLFW_TRUE;
     _glfw.hints.window.focused     = GLFW_TRUE;
     _glfw.hints.window.autoIconify = GLFW_TRUE;
+    _glfw.hints.window.hidpi       = GLFW_TRUE;
 
     // The default is 24 bits of color, 24 bits of depth and 8 bits of stencil,
     // double buffered
@@ -266,9 +268,6 @@ void glfwDefaultWindowHints(void)
 
     // The default is to select the highest available refresh rate
     _glfw.hints.refreshRate = GLFW_DONT_CARE;
-
-    // The default is to use full Retina resolution framebuffers
-    _glfw.hints.window.ns.retina = GLFW_TRUE;
 }
 
 GLFWAPI void glfwWindowHint(int hint, int value)
@@ -343,8 +342,8 @@ GLFWAPI void glfwWindowHint(int hint, int value)
         case GLFW_VISIBLE:
             _glfw.hints.window.visible = value ? GLFW_TRUE : GLFW_FALSE;
             break;
-        case GLFW_COCOA_RETINA_FRAMEBUFFER:
-            _glfw.hints.window.ns.retina = value ? GLFW_TRUE : GLFW_FALSE;
+        case GLFW_HIDPI_RESIZE:
+            _glfw.hints.window.hidpi = value ? GLFW_TRUE : GLFW_FALSE;
             break;
         case GLFW_COCOA_FRAME_AUTOSAVE:
             _glfw.hints.window.ns.frame = value ? GLFW_TRUE : GLFW_FALSE;
@@ -715,6 +714,8 @@ GLFWAPI int glfwGetWindowAttrib(GLFWwindow* handle, int attrib)
             return window->floating;
         case GLFW_AUTO_ICONIFY:
             return window->autoIconify;
+        case GLFW_HIDPI_RESIZE:
+            return window->hidpi;
         case GLFW_CLIENT_API:
             return window->context.client;
         case GLFW_CONTEXT_CREATION_API:

@@ -212,6 +212,25 @@ full screen windows.  This hint is ignored for full screen windows.
 __GLFW_MAXIMIZED__ specifies whether the windowed mode window will be maximized
 when created.  This hint is ignored for full screen windows.
 
+@anchor GLFW_HIDPI_RESIZE_hint
+__GLFW_HIDPI_RESIZE__ specifies whether the windowed mode window will resize
+either its framebuffer or both itself and the framebuffer when it is moved to
+a monitor with a significantly different DPI.
+
+@par
+@win32 On Windows 8.1 and later, this will cause both the window and its
+framebuffer to resize when it is moved to a monitor with a different DPI.  The
+new size makes the window appear approximately as large (measured in mm on the
+monitor) as on the previous monitor.  If disabled the window will not be resized
+when moved between monitors.
+
+@par
+@macos On OS X 10.7 and later, if enabled this hint will cause the
+framebuffer of the window to resize to an integer multiple of the window size,
+letting OpenGL render at the full resolution of Retina monitors while the rest
+of the UI appears not to resize.  If disabled rendering will not use Retina
+resolution in either full screen or windowed modes.
+
 
 @subsubsection window_hints_fb Framebuffer related hints
 
@@ -407,10 +426,6 @@ being listed.
 
 @subsubsection window_hints_osx macOS specific hints
 
-@anchor GLFW_COCOA_RETINA_FRAMEBUFFER_hint
-__GLFW_COCOA_RETINA_FRAMEBUFFER__ specifies whether to use full resolution
-framebuffers on Retina displays.  This is ignored on other platforms.
-
 @anchor GLFW_COCOA_FRAME_AUTOSAVE_hint
 __GLFW_COCOA_FRAME_AUTOSAVE__ specifies whether to activate frame autosaving
 using the window title specified at window creation.  This is ignored on other
@@ -428,6 +443,7 @@ GLFW_FOCUSED                  | `GLFW_TRUE`                 | `GLFW_TRUE` or `GL
 GLFW_AUTO_ICONIFY             | `GLFW_TRUE`                 | `GLFW_TRUE` or `GLFW_FALSE`
 GLFW_FLOATING                 | `GLFW_FALSE`                | `GLFW_TRUE` or `GLFW_FALSE`
 GLFW_MAXIMIZED                | `GLFW_FALSE`                | `GLFW_TRUE` or `GLFW_FALSE`
+GLFW_HIDPI_RESIZE             | `GLFW_TRUE`                 | `GLFW_TRUE` or `GLFW_FALSE`
 GLFW_RED_BITS                 | 8                           | 0 to `INT_MAX` or `GLFW_DONT_CARE`
 GLFW_GREEN_BITS               | 8                           | 0 to `INT_MAX` or `GLFW_DONT_CARE`
 GLFW_BLUE_BITS                | 8                           | 0 to `INT_MAX` or `GLFW_DONT_CARE`
@@ -453,7 +469,6 @@ GLFW_CONTEXT_RELEASE_BEHAVIOR | `GLFW_ANY_RELEASE_BEHAVIOR` | `GLFW_ANY_RELEASE_
 GLFW_OPENGL_FORWARD_COMPAT    | `GLFW_FALSE`                | `GLFW_TRUE` or `GLFW_FALSE`
 GLFW_OPENGL_DEBUG_CONTEXT     | `GLFW_FALSE`                | `GLFW_TRUE` or `GLFW_FALSE`
 GLFW_OPENGL_PROFILE           | `GLFW_OPENGL_ANY_PROFILE`   | `GLFW_OPENGL_ANY_PROFILE`, `GLFW_OPENGL_COMPAT_PROFILE` or `GLFW_OPENGL_CORE_PROFILE`
-GLFW_COCOA_RETINA_FRAMEBUFFER | `GLFW_TRUE`                 | `GLFW_TRUE` or `GLFW_FALSE`
 GLFW_COCOA_FRAME_AUTOSAVE     | `GLFW_FALSE`                | `GLFW_TRUE` or `GLFW_FALSE`
 
 
@@ -1064,6 +1079,11 @@ __GLFW_FLOATING__ indicates whether the specified window is floating, also
 called topmost or always-on-top.  This can be set before creation with the
 [GLFW_FLOATING](@ref GLFW_FLOATING_hint) window hint or after with @ref
 glfwSetWindowAttrib.
+
+@anchor GLFW_HIDPI_RESIZE_attrib
+__GLFW_HIDPI_RESIZE__ indicates whether the specified window will resize either
+its framebuffer or both itself and the framebuffer when it is moved to a monitor
+with a significantly different DPI.                     
 
 
 @subsubsection window_attribs_ctx Context related attributes

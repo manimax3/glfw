@@ -110,7 +110,7 @@ information on what to include when reporting a bug.
 - Added `glfwSetWindowAttrib` function for changing window attributes (#537)
 - Added headless [OSMesa](http://mesa3d.org/osmesa.html) backend (#281,#850)
 - Added definition of `GLAPIENTRY` to public header
-- Added macOS specific `GLFW_COCOA_RETINA_FRAMEBUFFER` window hint
+- Added `GLFW_HIDPI_RESIZE` window hint for controlling high-DPI window resizing
 - Added macOS specific `GLFW_COCOA_FRAME_AUTOSAVE` window hint (#195)
 - Added `GLFW_INCLUDE_ES32` for including the OpenGL ES 3.2 header
 - Removed `GLFW_USE_RETINA` compile-time option

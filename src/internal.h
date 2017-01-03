@@ -269,8 +269,8 @@ struct _GLFWwndconfig
     GLFWbool      autoIconify;
     GLFWbool      floating;
     GLFWbool      maximized;
+    GLFWbool      hidpi;
     struct {
-        GLFWbool  retina;
         GLFWbool  frame;
     } ns;
 };
@@ -364,6 +364,7 @@ struct _GLFWwindow
     GLFWbool            decorated;
     GLFWbool            autoIconify;
     GLFWbool            floating;
+    GLFWbool            hidpi;
     GLFWbool            shouldClose;
     void*               userPointer;
     GLFWvidmode         videoMode;

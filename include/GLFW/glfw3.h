@@ -686,6 +686,12 @@ extern "C" {
  *  [window attribute](@ref GLFW_MAXIMIZED_attrib).
  */
 #define GLFW_MAXIMIZED              0x00020008
+/*! @brief Window high-DPI resize window hint and attribute
+ *
+ *  Window high-DPI resize [window hint](@ref GLFW_HIDPI_RESIZE_hint) and
+ *  [window attribute](@ref GLFW_HIDPI_RESIZE_attrib).
+ */
+#define GLFW_HIDPI_RESIZE           0x00020009
 
 /*! @brief Framebuffer bit depth hint.
  *
@@ -834,8 +840,7 @@ extern "C" {
  */
 #define GLFW_CONTEXT_CREATION_API   0x0002200B
 
-#define GLFW_COCOA_RETINA_FRAMEBUFFER 0x00023001
-#define GLFW_COCOA_FRAME_AUTOSAVE     0x00023002
+#define GLFW_COCOA_FRAME_AUTOSAVE     0x00023001
 /*! @} */
 
 #define GLFW_NO_API                          0
@@ -2035,9 +2040,9 @@ GLFWAPI void glfwWindowHint(int hint, int value);
  *
  *  @remark @macos On OS X 10.10 and later the window frame will not be rendered
  *  at full resolution on Retina displays unless the
- *  [GLFW_COCOA_RETINA_FRAMEBUFFER](@ref GLFW_COCOA_RETINA_FRAMEBUFFER_hint)
- *  hint is `GLFW_TRUE` and the `NSHighResolutionCapable` key is enabled in the
- *  application bundle's `Info.plist`.  For more information, see
+ *  [GLFW_HIDPI_RESIZE](@ref GLFW_HIDPI_RESIZE_hint) hint is `GLFW_TRUE` and the
+ *  `NSHighResolutionCapable` key is enabled in the application bundle's
+ *  `Info.plist`.  For more information, see
  *  [High Resolution Guidelines for OS X](https://developer.apple.com/library/mac/documentation/GraphicsAnimation/Conceptual/HighResolutionOSX/Explained/Explained.html)
  *  in the Mac Developer Library.  The GLFW test and example programs use
  *  a custom `Info.plist` template for this, which can be found as
